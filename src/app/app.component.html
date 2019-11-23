@@ -1,4 +1,11 @@
-<button (click)="mySort()">Click</button>
+<!-- <button (click)="mySort()">Click<i class="fas fa-sort"></i></button> -->
+
+<button
+  [ngClass]="status ? 'fas fa-sort-amount-down' : 'fas fa-sort-amount-up-alt'"
+  class="my_class"
+  (click)="clickEvent()"
+></button>
+
 <mat-form-field>
   <mat-label>Select Field</mat-label>
   <mat-select

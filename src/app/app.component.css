@@ -5,3 +5,8 @@
 .ui-table-wrapper {
   margin-top: 200px !important;
 }
+
+/* Toggle button */
+.my_class {
+  margin-right: 30px;
+}
