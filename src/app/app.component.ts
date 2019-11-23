@@ -7,6 +7,7 @@ import {
   AfterViewInit
 } from "@angular/core";
 import { Table } from "primeng/table";
+import { MOCK_DATA } from "./data";
 
 @Component({
   selector: "app-root",
@@ -23,22 +24,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   cities: any[];
   selectedAmendmentCode: number;
   colName: string;
+  order = false;
+  myClass = true;
   @Output() sortFunction: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit() {
     // this.sortTable.sortFunction = this.sortFunction;
-    this.cars = [
-      { brand: "VW", year: 2012, color: "Orange", vin: "dsad231ff" },
-      { brand: "Audi", year: 2011, color: "Black", vin: "gwregre345" },
-      { brand: "Renault", year: 2005, color: "Gray", vin: "h354htr" },
-      { brand: "BMW", year: 2003, color: "Blue", vin: "j6w54qgh" },
-      { brand: "Mercedes", year: 1995, color: "Orange", vin: "hrtwy34" },
-      { brand: "Volvo", year: 2005, color: "Black", vin: "jejtyj" },
-      { brand: "Honda", year: 2012, color: "Yellow", vin: "g43gr" },
-      { brand: "Jaguar", year: 2013, color: "Orange", vin: "greg34" },
-      { brand: "Ford", year: 2000, color: "Black", vin: "h54hw5" },
-      { brand: "Fiat", year: 2013, color: "Red", vin: "245t2s" }
-    ];
+    this.cars = MOCK_DATA;
     this.cols = [
       { field: "vin", header: "Vin" },
       { field: "year", header: "Year" },
@@ -86,12 +78,18 @@ export class AppComponent implements OnInit, AfterViewInit {
   mySort() {
     console.log(this.sortTable);
     console.log(this.sortTable._value);
+    // this.order = !this.order;
     const colNm = this.colName;
     this.sortTable._value.sort((a, b) => {
       if (a[colNm] < b[colNm]) return -1;
       else if (a[colNm] > b[colNm]) return 1;
       else return 0;
     });
+    // this.sortTable._value.sort( (a, b) => {
+    //   const x = a.brand;
+    //   const y = b.brand;
+    //   return (this.order ? x - y : y -x);
+    // });
   }
 
   columnselection(ev) {

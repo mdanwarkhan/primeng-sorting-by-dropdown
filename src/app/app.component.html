@@ -1,16 +1,39 @@
 <button (click)="mySort()">Click</button>
+<mat-form-field>
+  <mat-label>Select Field</mat-label>
+  <mat-select
+    [(ngModel)]="colName"
+    [ngModelOptions]="{ standalone: true }"
+    (ngModelChange)="columnselection(colName)"
+  >
+    <mat-option *ngFor="let col of cols" [value]="col.field">
+      {{ col.header }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
 <p-table #sortTable [columns]="cols" [value]="cars">
   <ng-template pTemplate="header" let-columns>
     <tr>
       <!-- <div *ngFor="let col of columns">
                
             </div> -->
-      <th *ngFor="let col of columns.slice(0, 1)">
+      <th
+        *ngFor="let col of columns.slice(0, 1)"
+        [ngClass]="{
+          cssClass: this.colName == 'vin' || this.colName == 'year'
+        }"
+      >
         <div *ngFor="let col of columns.slice(0, 2)">
           {{ col.header }}
         </div>
       </th>
-      <th *ngFor="let col of columns.slice(2, 4)">
+      <th
+        *ngFor="let col of columns.slice(2, 4)"
+        [ngClass]="{
+          cssClass: this.colName == col
+        }"
+      >
         {{ col.header }}
       </th>
     </tr>
@@ -28,15 +51,3 @@
     </tr>
   </ng-template>
 </p-table>
-
-<mat-form-field style="margin-top: 20px;">
-  <mat-select
-    [(ngModel)]="colName"
-    [ngModelOptions]="{ standalone: true }"
-    (ngModelChange)="columnselection(colName)"
-  >
-    <mat-option *ngFor="let col of cols" [value]="col.field">
-      {{ col.header }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
