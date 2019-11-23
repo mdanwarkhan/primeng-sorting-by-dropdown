@@ -1,3 +1,16 @@
+/* .top-container {
+  float: right;
+  margin-bottom: 20px;
+} */
+
+.mat-select-panel-wrap {
+  flex-basis: 100%;
+  width: 30% !important;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  width: 30% !important;
+}
 .cssClass {
   background: lightgray !important;
 }

@@ -81,11 +81,16 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log(this.sortTable._value);
     // this.order = !this.order;
     const colNm = this.colName;
-    this.sortTable._value.sort((a, b) => {
-      if (a[colNm] < b[colNm]) return -1;
-      else if (a[colNm] > b[colNm]) return 1;
-      else return 0;
-    });
+    if (this.status) {
+      this.sortTable._value.sort((a, b) => {
+        if (a[colNm] < b[colNm]) return -1;
+        else if (a[colNm] > b[colNm]) return 1;
+        else return 0;
+      });
+    } else {
+      this.sortTable._value.reverse();
+    }
+
     // this.sortTable._value.sort( (a, b) => {
     //   const x = a.brand;
     //   const y = b.brand;
