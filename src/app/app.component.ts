@@ -26,7 +26,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   colName: string;
   order = false;
   myClass = true;
-  status: boolean = false;
+  status = false;
+  isDisabled = true;
   @Output() sortFunction: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit() {
@@ -99,6 +100,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   columnselection(ev) {
+    this.isDisabled = false;
     console.log(ev);
     this.colName = ev;
     // this.mySort();

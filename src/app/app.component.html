@@ -1,17 +1,11 @@
 <div class="top-container">
-  <button
-    [ngClass]="status ? 'fas fa-sort-amount-up-alt' : 'fas fa-sort-amount-down'"
-    class="my_class"
-    (click)="clickEvent()"
-  ></button>
+  <button [ngClass]="status ? 'fas fa-sort-amount-up-alt' : 'fas fa-sort-amount-down'" class="my_class"
+    [disabled]="isDisabled" (click)="clickEvent()"></button>
 
   <mat-form-field>
     <mat-label>Select Field</mat-label>
-    <mat-select
-      [(ngModel)]="colName"
-      [ngModelOptions]="{ standalone: true }"
-      (ngModelChange)="columnselection(colName)"
-    >
+    <mat-select [(ngModel)]="colName" [ngModelOptions]="{ standalone: true }"
+      (ngModelChange)="columnselection(colName)">
       <mat-option *ngFor="let col of cols" [value]="col.field">
         {{ col.header }}
       </mat-option>
@@ -22,30 +16,21 @@
 <p-table #sortTable [columns]="cols" [value]="cars">
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th
-        *ngFor="let col of columns.slice(0, 1)"
-        [ngClass]="{
+      <th *ngFor="let col of columns.slice(0, 1)" [ngClass]="{
           cssClass: this.colName == 'vin' || this.colName == 'year'
-        }"
-      >
+        }">
         <div *ngFor="let col of columns.slice(0, 2)">
           {{ col.header }}
         </div>
       </th>
-      <th
-        *ngFor="let col of columns.slice(2, 3)"
-        [ngClass]="{
+      <th *ngFor="let col of columns.slice(2, 3)" [ngClass]="{
           cssClass: this.colName == 'brand'
-        }"
-      >
+        }">
         {{ col.header }}
       </th>
-      <th
-        *ngFor="let col of columns.slice(3, 4)"
-        [ngClass]="{
+      <th *ngFor="let col of columns.slice(3, 4)" [ngClass]="{
           cssClass: this.colName == 'color'
-        }"
-      >
+        }">
         {{ col.header }}
       </th>
     </tr>
